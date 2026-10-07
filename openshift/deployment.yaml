@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: self-healing-api
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: self-healing-api
+
+  template:
+    metadata:
+      labels:
+        app: self-healing-api
+
+    spec:
+      containers:
+        - name: self-healing-api
+
+          image: quay.io/kanishka_tweet/self-healing-api:latest
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 5000
+              protocol: TCP
+
+          envFrom:
+            - configMapRef:
+                name: self-healing-config
+
+            - secretRef:
+                name: self-healing-secret
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+
+            limits:
+              cpu: 250m
+              memory: 256Mi
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3

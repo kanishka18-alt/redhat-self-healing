@@ -1,0 +1,14 @@
+
+apiVersion: route.openshift.io/v1
+kind: Route
+
+metadata:
+  name: self-healing-api
+
+spec:
+  to:
+    kind: Service
+    name: self-healing-api
+
+  port:
+    targetPort: http
