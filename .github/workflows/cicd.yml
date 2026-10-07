@@ -1,0 +1,66 @@
+
+name: Self-Healing API CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: quay.io/kanishka_tweet/self-healing-api
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Log in to Quay.io
+        uses: redhat-actions/podman-login@v1
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Build container image
+        run: |
+          podman build \
+            -t $IMAGE_NAME:${GITHUB_SHA} \
+            -t $IMAGE_NAME:latest \
+            -f Containerfile .
+
+      - name: Push container image to Quay.io
+        run: |
+          podman push $IMAGE_NAME:${GITHUB_SHA}
+          podman push $IMAGE_NAME:latest
+
+      - name: Install OpenShift CLI
+        uses: redhat-actions/oc-installer@v1
+
+      - name: Log in to OpenShift
+        run: |
+          oc login \
+            --server="${{ secrets.OPENSHIFT_SERVER }}" \
+            --token="${{ secrets.OPENSHIFT_TOKEN }}" \
+            --insecure-skip-tls-verify=true
+
+      - name: Select OpenShift project
+        run: |
+          oc project "${{ secrets.OPENSHIFT_NAMESPACE }}"
+
+      - name: Deploy new image
+        run: |
+          oc set image deployment/self-healing-api \
+            self-healing-api=$IMAGE_NAME:${GITHUB_SHA}
+
+      - name: Wait for deployment rollout
+        run: |
+          oc rollout status deployment/self-healing-api --timeout=180s
+
+      - name: Verify deployment
+        run: |
+          oc get deployment self-healing-api
+          oc get pods
