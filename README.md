@@ -29,17 +29,6 @@ Expose application monitoring metrics.
 Run the application as a non-root user.
 Automate build and deployment using GitHub Actions.
        
-Request Flow :
-User
-  ↓
-OpenShift Route
-  ↓
-OpenShift Service
-  ↓
-Available Pod
-  ↓
-Flask REST API
-
 Tech Stack : 
 Application Development
 Python 3.13 — Backend programming language
