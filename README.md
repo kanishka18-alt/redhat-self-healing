@@ -44,7 +44,28 @@ The main objectives of this project are to:
 9. Run the application as a non-root user.
 
 10. Automate build and deployment using GitHub Actions.
-       
+
+**Project Structure :**
+```text
+redhat-self-healing/
+│
+├── .github/
+│   └── workflows/
+│       └── cicd.yml
+│
+├── openshift/
+│   ├── configmap.yaml
+│   ├── deployment.yaml
+│   ├── route.yaml
+│   ├── secret.yaml
+│   └── service.yaml
+│
+├── app.py
+├── Containerfile
+├── requirements.txt
+├── .gitignore
+└── README.md
+
 **Tech Stack :**
 
 **Application Development**
@@ -115,9 +136,11 @@ The main objectives of this project are to:
 
 3. The OpenShift Service distributes requests among healthy application Pods.
 
-**Author**
+**Author : **
 
 Kanishka Sharma
+
 B.E. Computer Science, B.M.S College of Engineering
+
 GitHub: https://github.com/kanishka18-alt LinkedIn: https://linkedin.com/in/kanishka-sharma-3aab79279
 
