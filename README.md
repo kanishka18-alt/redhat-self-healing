@@ -115,3 +115,9 @@ The main objectives of this project are to:
 
 3. The OpenShift Service distributes requests among healthy application Pods.
 
+**Author**
+
+Kanishka Sharma
+B.E. Computer Science, B.M.S College of Engineering
+GitHub: https://github.com/kanishka18-alt LinkedIn: https://linkedin.com/in/kanishka-sharma-3aab79279
+
