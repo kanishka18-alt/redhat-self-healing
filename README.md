@@ -65,7 +65,7 @@ redhat-self-healing/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-
+```
 **Tech Stack :**
 
 **Application Development**
