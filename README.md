@@ -1,7 +1,6 @@
 Self-Healing & Scalable REST API Platform using Red Hat OpenShift and Podman
 
-A containerized Flask REST API deployed on Red Hat OpenShift with automated health monitoring, self-healing, horizontal scaling, Prometheus metrics, and GitHub Actions CI/CD.
-The project demonstrates how containerized applications can automatically recover from failures and how new application versions can be built, pushed, and deployed automatically through a CI/CD pipeline.
+A containerized Flask REST API deployed on Red Hat OpenShift with automated health monitoring, self-healing, horizontal scaling, Prometheus metrics, and GitHub Actions CI/CD. The project demonstrates how containerized applications can automatically recover from failures and how new application versions can be built, pushed, and deployed automatically through a CI/CD pipeline.
 
 Problem Statement : 
 Containerized applications can experience failures due to application crashes, unhealthy processes, resource constraints, or other runtime issues. Manually detecting and restarting failed services can increase downtime and require continuous monitoring.
@@ -29,49 +28,6 @@ Demonstrate horizontal scaling.
 Expose application monitoring metrics.
 Run the application as a non-root user.
 Automate build and deployment using GitHub Actions.
-
-Architecture : 
-                         Developer
-                            │
-                            │ git push
-                            ▼
-                    ┌─────────────────┐
-                    │     GitHub      │
-                    │  Actions CI/CD  │
-                    └────────┬────────┘
-                             │
-                    Build container image
-                             │
-                             ▼
-                    ┌─────────────────┐
-                    │     Quay.io     │
-                    │ Container Image │
-                    └────────┬────────┘
-                             │
-                             │ Pull image
-                             ▼
-                    ┌─────────────────┐
-                    │    OpenShift    │
-                    │   Deployment    │
-                    └────────┬────────┘
-                             │
-                    ┌────────┼────────┐
-                    ▼        ▼        ▼
-                  Pod 1    Pod 2     Pod 3
-                    │        │        │
-                    └────────┼────────┘
-                             │
-                         Flask API
-                             │
-              ┌──────────────┼──────────────┐
-              ▼              ▼              ▼
-           /health        /metrics        /tasks
-              │
-       Liveness/Readiness
-           Probes
-              │
-              ▼
-       Automatic Recovery
        
 Request Flow :
 User
