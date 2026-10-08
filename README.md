@@ -134,9 +134,7 @@ redhat-self-healing/
 
 2. Python Virtual Environment (venv) — Isolated Python dependencies
 
-3. The OpenShift Service distributes requests among healthy application Pods.
-
-**Author : **
+**Author :**
 
 Kanishka Sharma
 
