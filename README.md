@@ -1,8 +1,8 @@
-Self-Healing & Scalable REST API Platform using Red Hat OpenShift and Podman
+**Self-Healing & Scalable REST API Platform using Red Hat OpenShift and Podman**
 
 A containerized Flask REST API deployed on Red Hat OpenShift with automated health monitoring, self-healing, horizontal scaling, Prometheus metrics, and GitHub Actions CI/CD. The project demonstrates how containerized applications can automatically recover from failures and how new application versions can be built, pushed, and deployed automatically through a CI/CD pipeline.
 
-Problem Statement : 
+**Problem Statement :**
 Containerized applications can experience failures due to application crashes, unhealthy processes, resource constraints, or other runtime issues. Manually detecting and restarting failed services can increase downtime and require continuous monitoring.
 This project addresses the problem by deploying a REST API on OpenShift with:
 
@@ -15,7 +15,7 @@ Container security using a non-root user
 Automated CI/CD using GitHub Actions
 Container image management through Quay.io
 
-Objectives : 
+**Objectives :** 
 The main objectives of this project are to:
 
 Containerize a Flask REST API using Podman.
@@ -29,22 +29,27 @@ Expose application monitoring metrics.
 Run the application as a non-root user.
 Automate build and deployment using GitHub Actions.
        
-Tech Stack : 
-Application Development
+**Tech Stack :**
+
+**Application Development**
+
 Python 3.13 — Backend programming language
 Flask 3.1.3 — REST API framework
 Prometheus Client — Application metrics and monitoring
 REST API / JSON — API communication and data format
 
-Containerization
+**Containerization**
+
 Podman — Build, run, and manage OCI containers
 Containerfile — Container image definition
 Python Slim Base Image — Lightweight container base image
 
-Container Registry
+**Container Registry**
+
 Quay.io — Container image storage and distribution
 
-Container Orchestration & Deployment
+**Container Orchestration & Deployment**
+
 Red Hat OpenShift — Container orchestration and application deployment
 Kubernetes Deployments — Replica management and self-healing
 Pods — Application runtime instances
@@ -55,7 +60,8 @@ Secrets — Sensitive configuration management
 Liveness & Readiness Probes — Health monitoring and automated recovery
 Resource Requests & Limits — CPU and memory management
 
-Monitoring
+**Monitoring**
+
 Prometheus-compatible Metrics — Application and health metrics
 /metrics endpoint — Metrics exposure
 /uptime endpoint — Application uptime monitoring
